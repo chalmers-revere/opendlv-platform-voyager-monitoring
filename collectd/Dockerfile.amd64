@@ -1,0 +1,57 @@
+FROM ubuntu:18.04
+MAINTAINER Christian Berger <christian.berger@gu.se>
+
+RUN apt-get update && apt-get install -y \
+      autoconf \
+      automake \
+      autotools-dev \
+      bison \
+      build-essential \
+      curl \
+      flex \
+      git \
+      iptables-dev \
+      libatasmart-dev \
+      libcurl4-gnutls-dev \
+      libdbi0-dev \
+      libgcrypt11-dev \
+      libglib2.0-dev \
+      libgps-dev \
+      libltdl-dev \
+      libmnl-dev \
+      libopenipmi-dev \
+      liboping-dev \
+      libpcap-dev \
+      libperl-dev \
+      librrd-dev \
+      libsensors4-dev \
+      libtool \
+      libudev-dev \
+      libvirt-dev \
+      libxml2-dev \
+      linux-libc-dev \
+      pkg-config \
+      python-dev && \
+      rm -rf /usr/share/doc/* && \
+      rm -rf /usr/share/info/* && \
+      rm -rf /tmp/* && \
+      rm -rf /var/tmp/*
+
+ENV COLLECTD_VERSION collectd-5.8.1
+
+WORKDIR /usr/src
+RUN git clone https://github.com/collectd/collectd.git
+WORKDIR /usr/src/collectd
+RUN git checkout $COLLECTD_VERSION
+RUN ./build.sh
+RUN ./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc/collectd \
+    --without-libstatgrab \
+    --without-included-ltdl \
+    --disable-static
+RUN make all && make install && make clean
+ADD collectd.conf /etc/collectd/
+ADD entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
