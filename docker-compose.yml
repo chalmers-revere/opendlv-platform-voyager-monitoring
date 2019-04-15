@@ -19,6 +19,7 @@ services:
   influxdb:
     image: influxdb:1.7.5
     container_name: influxdb
+    restart: always
     environment:
     - INFLUXDB_REPORTING_DISABLED=1
     ports:
@@ -34,6 +35,7 @@ services:
       context: ./collectd
       dockerfile: Dockerfile.amd64
     container_name: collectd
+    restart: always
     depends_on:
     - influxdb
     privileged: true
@@ -46,6 +48,7 @@ services:
   grafana:
     image: grafana/grafana:6.1.3
     container_name: grafana
+    restart: always
     depends_on:
     - influxdb
     links:
