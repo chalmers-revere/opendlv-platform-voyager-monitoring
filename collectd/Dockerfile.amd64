@@ -53,5 +53,18 @@ RUN ./configure \
 RUN make all && make install && make clean
 ADD collectd.conf /etc/collectd/
 ADD entrypoint.sh /entrypoint.sh
+ADD collectd_cuda.sh /opt/
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update && apt-get install -y \
+      software-properties-common
+
+RUN apt-get update && add-apt-repository -y ppa:graphics-drivers/ppa
+
+RUN apt-get update && apt-get install -y \
+      nvidia-driver-418
+
+RUN useradd -rm -d /home/cuda -s /bin/bash -g root -u 1000 cuda
 
 ENTRYPOINT ["/entrypoint.sh"]
