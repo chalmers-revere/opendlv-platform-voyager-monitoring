@@ -21,9 +21,10 @@ services:
     container_name: influxdb
     restart: always
     environment:
+    - INFLUXDB_HTTP_BIND_ADDRESS=:2717
     - INFLUXDB_REPORTING_DISABLED=1
     ports:
-    - "8086:8086"
+    - "2717:2717"
     - "25826:25826/udp"
     volumes:
     - ./influxdb-data:/var/lib/influxdb
@@ -54,8 +55,9 @@ services:
     links:
     - "influxdb"
     ports:
-    - "3000:3000"
+    - "2716:2716"
     environment:
+    - GF_SERVER_HTTP_PORT=2716
     - GF_SECURITY_ADMIN_PASSWORD=adm!n321
     - GF_SERVER_PROTOCOL=http
     - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-piechart-panel
