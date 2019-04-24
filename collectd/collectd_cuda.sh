@@ -49,7 +49,8 @@ do
 		# additional loops and conditions, is to simply expand the
 		# 'parameter' variable with '//P'.
 		#echo "PUTVAL ${HOSTNAME}/cuda-0/${config[$parameter]}-${parameter} interval=$INTERVAL N:${!parameter//P}" | tee -a /tmp/state.log
-		echo "PUTVAL ${HOSTNAME}/cuda-${gpu_id}/${config[$parameter]}-${parameter} interval=$INTERVAL N:${!parameter//P}" | tee -a /tmp/state.log
+		#echo "PUTVAL ${HOSTNAME}/cuda-${gpu_id}/${config[$parameter]}-${parameter} interval=$INTERVAL N:${!parameter//P}" | tee -a /tmp/state.log
+		echo "PUTVAL ${HOSTNAME}/cuda-${gpu_id}/${config[$parameter]}-${parameter} interval=$INTERVAL N:${!parameter//P}"
 	done
 done <<< "${gpus_state// }"
 

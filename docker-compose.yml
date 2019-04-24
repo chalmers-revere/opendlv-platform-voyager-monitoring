@@ -45,7 +45,7 @@ services:
     - /tmp:/tmp
 #    - /etc/sensors3.conf:/etc/sensors.conf:ro
     - ./collectd/collectd.conf:/etc/collectd/collectd.conf
-    - ./collectd/collectd_cuda.sh:/collectd_cuda.sh
+#    - ./collectd/collectd_cuda.sh:/collectd_cuda.sh
 
   grafana:
     image: grafana/grafana:6.1.3
