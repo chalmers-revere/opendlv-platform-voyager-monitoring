@@ -43,8 +43,7 @@ services:
     network_mode: host
     volumes:
     - /proc:/mnt/proc:ro
-    - /tmp:/tmp
-#    - /etc/sensors3.conf:/etc/sensors.conf:ro
+    - /mnt:/data:ro
     - ./collectd/collectd.conf:/etc/collectd/collectd.conf
 
   grafana:
