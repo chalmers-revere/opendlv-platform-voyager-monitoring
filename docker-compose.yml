@@ -60,6 +60,7 @@ services:
     - GF_SERVER_HTTP_PORT=2716
     - GF_SECURITY_ADMIN_PASSWORD=adm!n321
     - GF_SERVER_PROTOCOL=http
+    - GF_SESSION_COOKIE_NAME=grafana_apollo
     - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-piechart-panel
     volumes:
     - ./grafana-data:/var/lib/grafana
