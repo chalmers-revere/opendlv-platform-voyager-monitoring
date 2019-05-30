@@ -68,3 +68,17 @@ services:
     - ./grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
     - ./grafana/Dashboard.json:/var/lib/grafana/dashboards/Dashboard.json
 
+  # Log GPS position and speed to Dashboard
+  dlv-can-peak:
+    container_name: peak-gps
+    image: chalmersrevere/opendlv-device-gps-peak-multi:v0.0.8
+    restart: always
+    network_mode: "host"
+    command: "--cid=99 --can=can0"
+
+  peak-to-statsd:
+    container_name: peak-to-statsd
+    image: opendlv-monitor-statsd-peak:latest
+    restart: always
+    network_mode: "host"
+    command: "--cid=99"
