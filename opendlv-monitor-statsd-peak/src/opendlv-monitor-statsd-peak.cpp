@@ -64,7 +64,7 @@ int32_t main(int32_t argc, char **argv) {
             cluon::UDPSender sender("127.0.0.1", 8125);
             {
                 std::stringstream sstr;
-                sstr << "PEAK-GPS.numberOfSatellites:" << status.numberOfSatellites() << "|g";
+                sstr << "PEAK-GPS.numberOfSatellites:" << +status.numberOfSatellites() << "|g";
                 std::string s = sstr.str();
                 sender.send(std::move(s));
             }

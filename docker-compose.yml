@@ -43,7 +43,7 @@ services:
     network_mode: host
     volumes:
     - /proc:/mnt/proc:ro
-    - /mnt:/data:ro
+    - /mnt/Volume1:/data:ro
     - ./collectd/collectd.conf:/etc/collectd/collectd.conf
 
   grafana:
