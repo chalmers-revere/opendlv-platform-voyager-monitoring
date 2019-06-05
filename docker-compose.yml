@@ -42,8 +42,10 @@ services:
     privileged: true
     network_mode: host
     volumes:
+    - /dev/md127:/dev/md127:ro
+    - /dev/nvme0n1p2:/dev/nvme0n1p2:ro
     - /proc:/mnt/proc:ro
-    - /mnt/Volume1:/data:ro
+    - /mnt/Volume1/data:/data:ro
     - ./collectd/collectd.conf:/etc/collectd/collectd.conf
 
   grafana:
