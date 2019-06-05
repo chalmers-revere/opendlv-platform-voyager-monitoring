@@ -1,4 +1,31 @@
 {
+  "__inputs": [],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "6.1.3"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-clock-panel",
+      "name": "Clock",
+      "version": "1.0.3"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -15,7 +42,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 4,
+  "id": null,
   "links": [],
   "panels": [
     {
@@ -1276,11 +1303,11 @@
       ],
       "decimals": 2,
       "description": "",
-      "format": "none",
+      "format": "amp",
       "gauge": {
-        "maxValue": 10,
-        "minValue": 0,
-        "show": true,
+        "maxValue": 50,
+        "minValue": -50,
+        "show": false,
         "thresholdLabels": false,
         "thresholdMarkers": true
       },
@@ -1307,8 +1334,8 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "postfix": "A",
-      "postfixFontSize": "50%",
+      "postfix": "",
+      "postfixFontSize": "100%",
       "prefix": "",
       "prefixFontSize": "50%",
       "rangeMaps": [
@@ -1369,10 +1396,10 @@
           ]
         }
       ],
-      "thresholds": "8,9,10",
+      "thresholds": "",
       "title": "current",
       "type": "singlestat",
-      "valueFontSize": "70%",
+      "valueFontSize": "100%",
       "valueMaps": [
         {
           "op": "=",
@@ -2076,19 +2103,19 @@
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
+      "colorBackground": true,
       "colorValue": false,
       "colors": [
-        "#299c46",
+        "#d44a3a",
         "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
+        "#299c46"
       ],
       "decimals": 1,
       "format": "Bps",
       "gauge": {
         "maxValue": 125000,
         "minValue": 2,
-        "show": true,
+        "show": false,
         "thresholdLabels": false,
         "thresholdMarkers": true
       },
@@ -2191,7 +2218,7 @@
           ]
         }
       ],
-      "thresholds": "93750,112500,125000",
+      "thresholds": "1,1",
       "title": "can0",
       "type": "singlestat",
       "valueFontSize": "50%",
@@ -2200,19 +2227,19 @@
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
+      "colorBackground": true,
       "colorValue": false,
       "colors": [
-        "#299c46",
+        "#d44a3a",
         "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
+        "#299c46"
       ],
       "decimals": 1,
       "format": "Bps",
       "gauge": {
         "maxValue": 1000000,
         "minValue": 2,
-        "show": true,
+        "show": false,
         "thresholdLabels": false,
         "thresholdMarkers": true
       },
@@ -2315,7 +2342,7 @@
           ]
         }
       ],
-      "thresholds": "750000,900000,1000000",
+      "thresholds": "1,1",
       "title": "can1",
       "type": "singlestat",
       "valueFontSize": "50%",
@@ -2324,19 +2351,19 @@
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
+      "colorBackground": true,
       "colorValue": false,
       "colors": [
-        "#299c46",
+        "#d44a3a",
         "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
+        "#299c46"
       ],
       "decimals": 1,
       "format": "Bps",
       "gauge": {
         "maxValue": 1000000,
         "minValue": 2,
-        "show": true,
+        "show": false,
         "thresholdLabels": false,
         "thresholdMarkers": true
       },
@@ -2439,7 +2466,7 @@
           ]
         }
       ],
-      "thresholds": "750000,900000,1000000",
+      "thresholds": "1,1",
       "title": "can2",
       "type": "singlestat",
       "valueFontSize": "50%",
@@ -2448,19 +2475,19 @@
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
+      "colorBackground": true,
       "colorValue": false,
       "colors": [
-        "#299c46",
+        "#d44a3a",
         "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
+        "#299c46"
       ],
       "decimals": 1,
       "format": "Bps",
       "gauge": {
         "maxValue": 1000000,
         "minValue": 2,
-        "show": true,
+        "show": false,
         "thresholdLabels": false,
         "thresholdMarkers": true
       },
@@ -2563,7 +2590,7 @@
           ]
         }
       ],
-      "thresholds": "750000,900000,1000000",
+      "thresholds": "1,1",
       "title": "can3",
       "type": "singlestat",
       "valueFontSize": "50%",
@@ -2572,19 +2599,19 @@
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
+      "colorBackground": true,
       "colorValue": false,
       "colors": [
-        "#299c46",
+        "#d44a3a",
         "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
+        "#299c46"
       ],
       "decimals": 1,
       "format": "Bps",
       "gauge": {
         "maxValue": 1000000,
         "minValue": 2,
-        "show": true,
+        "show": false,
         "thresholdLabels": false,
         "thresholdMarkers": true
       },
@@ -2687,7 +2714,7 @@
           ]
         }
       ],
-      "thresholds": "750000,900000,1000000",
+      "thresholds": "1,1",
       "title": "can4",
       "type": "singlestat",
       "valueFontSize": "50%",
@@ -2696,19 +2723,19 @@
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
+      "colorBackground": true,
       "colorValue": false,
       "colors": [
-        "#299c46",
+        "#d44a3a",
         "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
+        "#299c46"
       ],
       "decimals": 1,
       "format": "Bps",
       "gauge": {
         "maxValue": 1000000,
         "minValue": 2,
-        "show": true,
+        "show": false,
         "thresholdLabels": false,
         "thresholdMarkers": true
       },
@@ -2811,7 +2838,7 @@
           ]
         }
       ],
-      "thresholds": "750000,900000,1000000",
+      "thresholds": "1,1",
       "title": "can5",
       "type": "singlestat",
       "valueFontSize": "50%",
@@ -2820,19 +2847,19 @@
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
+      "colorBackground": true,
       "colorValue": false,
       "colors": [
-        "#299c46",
+        "#d44a3a",
         "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
+        "#299c46"
       ],
       "decimals": 1,
       "format": "Bps",
       "gauge": {
         "maxValue": 1000000,
         "minValue": 2,
-        "show": true,
+        "show": false,
         "thresholdLabels": false,
         "thresholdMarkers": true
       },
@@ -2935,7 +2962,7 @@
           ]
         }
       ],
-      "thresholds": "750000,900000,1000000",
+      "thresholds": "1,1",
       "title": "can6",
       "type": "singlestat",
       "valueFontSize": "50%",
@@ -2944,19 +2971,19 @@
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
+      "colorBackground": true,
       "colorValue": false,
       "colors": [
-        "#299c46",
+        "#d44a3a",
         "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
+        "#299c46"
       ],
       "decimals": 1,
       "format": "Bps",
       "gauge": {
         "maxValue": 1000000,
         "minValue": 2,
-        "show": true,
+        "show": false,
         "thresholdLabels": false,
         "thresholdMarkers": true
       },
@@ -3059,7 +3086,7 @@
           ]
         }
       ],
-      "thresholds": "750000,900000,1000000",
+      "thresholds": "1,1",
       "title": "can7",
       "type": "singlestat",
       "valueFontSize": "50%",
@@ -3106,5 +3133,5 @@
   "timezone": "",
   "title": "Eagle",
   "uid": "PrNmXhRZz",
-  "version": 9
+  "version": 10
 }
