@@ -16,6 +16,14 @@
 version: '2'
 
 services:
+  dlv-can-peak:
+    container_name: dlv-can-peak
+    image: chalmersrevere/opendlv-device-gps-peak-multi:v0.0.8
+    restart: always
+    network_mode: "host"
+    privileged: true
+    command: "--can=can0 --cid=91 --id=0"
+
   influxdb:
     image: influxdb:1.7.5
     container_name: influxdb
