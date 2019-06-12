@@ -24,6 +24,13 @@ services:
     privileged: true
     command: "--can=can0 --cid=91 --id=0"
 
+  peak-to-statsd:
+    container_name: peak-to-statsd
+    image: opendlv-monitor-statsd-peak:latest
+    restart: always
+    network_mode: "host"
+    command: "--cid=91"
+
   influxdb:
     image: influxdb:1.7.5
     container_name: influxdb
