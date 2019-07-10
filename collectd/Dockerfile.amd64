@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM nvidia/cuda:10.1-devel-ubuntu18.04
 MAINTAINER Christian Berger <christian.berger@gu.se>
 
 RUN apt-get update && apt-get install -y \
