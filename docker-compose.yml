@@ -64,7 +64,7 @@ services:
     - GF_SECURITY_ADMIN_PASSWORD=adm!n321
     - GF_SERVER_PROTOCOL=http
     - GF_SESSION_COOKIE_NAME=grafana_apollo
-    - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-piechart-panel
+    - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-piechart-panel,pr0ps-trackmap-panel
     volumes:
     - ./grafana-data:/var/lib/grafana
     - ./grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
