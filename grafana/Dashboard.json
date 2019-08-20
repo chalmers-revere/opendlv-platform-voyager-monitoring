@@ -274,13 +274,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
+                "type": "last"
               }
             ]
           ],
@@ -395,13 +389,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
+                "type": "last"
               }
             ]
           ],
