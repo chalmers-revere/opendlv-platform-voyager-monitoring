@@ -83,3 +83,15 @@ services:
     - ./grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
     - ./grafana/Eagle.json:/var/lib/grafana/dashboards/Eagle.json
 
+  record-gps:
+    container_name: record-gps
+    image: chrberger/cluon-amd64:latest
+    cpuset: "0"
+    restart: always
+    network_mode: "host"
+    volumes:
+    - /mnt/sdb1/data/upload:/upload
+    working_dir: /upload
+    cap_add:
+    - SYS_NICE
+    command: sh -c "nice -n -7 cluon-OD4toStdout --cid=91 > `date +%Y-%m-%d_%H%M%S-gps-speed-heading-satellites.rec`"
