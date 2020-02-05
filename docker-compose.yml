@@ -84,7 +84,7 @@ services:
     image: chalmersrevere/opendlv-device-gps-nmea-multi:v0.0.15
     restart: always
     network_mode: "host"
-    command: "--udp --nmea_ip=0.0.0.0 --nmea_port=9999 --cid=91"
+    command: "--udp --nmea_ip=0.0.0.0 --nmea_port=9999 --cid=99"
 
   peak-to-statsd:
     container_name: peak-to-statsd
