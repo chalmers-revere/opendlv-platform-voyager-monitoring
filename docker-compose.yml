@@ -16,13 +16,20 @@
 version: '2'
 
 services:
+#  peak-gps:
+#    container_name: peak-gps
+#    image: chalmersrevere/opendlv-device-gps-peak-multi:v0.0.8
+#    restart: always
+#    network_mode: "host"
+#    privileged: true
+#    command: "--can=vcan0 --cid=91 --id=0"
+
   peak-gps:
     container_name: peak-gps
-    image: chalmersrevere/opendlv-device-gps-peak-multi:v0.0.8
+    image: chalmersrevere/opendlv-device-gps-nmea-multi:v0.0.16
     restart: always
     network_mode: "host"
-    privileged: true
-    command: "--can=vcan0 --cid=91 --id=0"
+    command: "--udp --nmea_ip=0.0.0.0 --nmea_port=9999 --cid=91"
 
   peak-to-statsd:
     container_name: peak-to-statsd
