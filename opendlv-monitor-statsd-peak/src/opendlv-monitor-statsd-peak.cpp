@@ -31,10 +31,12 @@ int32_t main(int32_t argc, char **argv) {
         std::cerr << argv[0] << " joins a running OD4 session to relay selected messages from PEAK GPS to statsd." << std::endl;
         std::cerr << "Usage:   " << argv[0] << " --cid=<OD4 session> [--verbose]" << std::endl;
         std::cerr << "         --cid:    CID of the OD4Session to receive messages" << std::endl;
+        std::cerr << "         --id:     ID of the messages to receive" << std::endl;
         std::cerr << "Example: " << argv[0] << " --cid=111 --verbose" << std::endl;
     }
     else {
         const bool VERBOSE{commandlineArguments.count("verbose") != 0};
+	const uint32_t ID{static_cast<uint32_t>((commandlineArguments.count("id") != 0) ? std::stoi(commandlineArguments["id"]) : 0)};
 
         // Interface to a running OpenDaVINCI session; here, you can receive messages.
         cluon::OD4Session od4{static_cast<uint16_t>(std::stoi(commandlineArguments["cid"]))};
@@ -44,13 +46,17 @@ int32_t main(int32_t argc, char **argv) {
         opendlv::proxy::GroundSpeedReading speed;
         opendlv::device::gps::peak::GPSStatus status;
 
-        auto onGroundSpeed = [&dataMutex, &speed](cluon::data::Envelope &&env){
+        auto onGroundSpeed = [&dataMutex, &speed, ID](cluon::data::Envelope &&env){
             std::lock_guard<std::mutex> lck(dataMutex);
-            speed = cluon::extractMessage<opendlv::proxy::GroundSpeedReading>(std::move(env));
+            if (env.senderStamp() == ID) {
+                speed = cluon::extractMessage<opendlv::proxy::GroundSpeedReading>(std::move(env));
+	    }
         };
-        auto onGPSStatus = [&dataMutex, &status](cluon::data::Envelope &&env){
+        auto onGPSStatus = [&dataMutex, &status, ID](cluon::data::Envelope &&env){
             std::lock_guard<std::mutex> lck(dataMutex);
-            status = cluon::extractMessage<opendlv::device::gps::peak::GPSStatus>(std::move(env));
+            if (env.senderStamp() == ID) {
+                status = cluon::extractMessage<opendlv::device::gps::peak::GPSStatus>(std::move(env));
+	    }
         };
 
         od4.dataTrigger(opendlv::proxy::GroundSpeedReading::ID(), onGroundSpeed);
@@ -66,6 +72,9 @@ int32_t main(int32_t argc, char **argv) {
                 std::stringstream sstr;
                 sstr << "PEAK-GPS.numberOfSatellites:" << +status.numberOfSatellites() << "|g";
                 std::string s = sstr.str();
+		if (VERBOSE) {
+                    std::cout << s << std::endl;
+		}
                 sender.send(std::move(s));
             }
             {
@@ -73,6 +82,9 @@ int32_t main(int32_t argc, char **argv) {
                 sstr.precision(1);
                 sstr << "PEAK-GPS.speed:" << speed.groundSpeed() << "|g";
                 std::string s = sstr.str();
+		if (VERBOSE) {
+                    std::cout << s << std::endl;
+		}
                 sender.send(std::move(s));
             }
 

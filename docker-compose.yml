@@ -16,20 +16,20 @@
 version: '2'
 
 services:
-#  peak-gps:
-#    container_name: peak-gps
-#    image: chalmersrevere/opendlv-device-gps-peak-multi:v0.0.8
-#    restart: always
-#    network_mode: "host"
-#    privileged: true
-#    command: "--can=vcan0 --cid=91 --id=0"
-
   peak-gps:
     container_name: peak-gps
+    image: chalmersrevere/opendlv-device-gps-peak-multi:v0.0.8
+    restart: always
+    network_mode: "host"
+    privileged: true
+    command: "--can=vcan0 --cid=91 --id=0"
+
+  garmin-gps:
+    container_name: garmin-gps
     image: chalmersrevere/opendlv-device-gps-nmea-multi:v0.0.16
     restart: always
     network_mode: "host"
-    command: "--udp --nmea_ip=0.0.0.0 --nmea_port=9999 --cid=91"
+    command: "--udp --nmea_ip=0.0.0.0 --nmea_port=9999 --cid=93 --id=1"
 
   peak-to-statsd:
     container_name: peak-to-statsd
@@ -102,3 +102,17 @@ services:
     cap_add:
     - SYS_NICE
     command: sh -c "nice -n -7 cluon-OD4toStdout --cid=91 > `date +%Y-%m-%d_%H%M%S-gps-speed-heading-satellites.rec`"
+
+  record-gps-garmin:
+    container_name: record-gps-garmin
+    image: chrberger/cluon-amd64:latest
+    cpuset: "0"
+    restart: always
+    network_mode: "host"
+    volumes:
+    - /mnt/sdb1/data/upload:/upload
+    working_dir: /upload
+    cap_add:
+    - SYS_NICE
+    command: sh -c "nice -n -8 cluon-OD4toStdout --cid=93 > `date +%Y-%m-%d_%H%M%S-gps-garmin.rec`"
+
